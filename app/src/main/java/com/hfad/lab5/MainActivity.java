@@ -108,6 +108,26 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putLong(BASE_KEY, stopwatch.getBase());
     }
 
+    protected void onPause()
+    {
+        super.onPause();
+        if (running) {
+            saveOffset();
+            stopwatch.stop();
+        }
+    }
+
+    protected void onResume()
+    {
+        super.onResume();
+        if (running) {
+            setBaseTime();
+            stopwatch.start();
+            offset = 0;
+        }
+    }
+
+
 
     public void setBaseTime()
     {
